@@ -8,133 +8,175 @@
 
     <include layout="@layout/activity_topbar" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView5"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="50px"
-            android:paddingTop="20px"
-            android:text="Cache Number:"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextCacheNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="50px"
-            android:ems="10"
-            android:inputType="text"
-            android:paddingLeft="50px"
-            android:text="+393792530897" />
+            <TextView
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="50px"
-            android:paddingTop="10px"
-            android:text="ICCID1:"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:text="DEVICE:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="50px"
-            android:ems="10"
-            android:inputType="text"
-            android:paddingLeft="50px" />
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="50dp"
+                android:ems="10"
+                android:inputType="text"
+                android:paddingLeft="15dp" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="50px"
-            android:paddingTop="10px"
-            android:text="Phone1:"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:text="ICCID1:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editText1_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="50px"
-            android:ems="10"
-            android:inputType="text"
-            android:paddingLeft="10px" />
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="50dp"
+                android:ems="10"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                tools:ignore="RtlSymmetry" />
 
-        <Button
-            android:id="@+id/button1Send"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1 SLOT  -> TG" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:text="Phone1:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="50px"
-            android:paddingTop="10px"
-            android:text="ICCID2:"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/editText1_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="50dp"
+                android:ems="10"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingLeft="15dp"
+                tools:ignore="RtlSymmetry" />
 
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="50px"
-            android:ems="10"
-            android:inputType="text"
-            android:paddingLeft="50px" />
+            <Button
+                android:id="@+id/button1Send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1 SLOT  -> TG" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="50px"
-            android:paddingTop="10px"
-            android:text="Phone2:"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:text="ICCID2:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editText2_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="50px"
-            android:ems="10"
-            android:inputType="text"
-            android:paddingLeft="50px" />
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="50dp"
+                android:ems="10"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingLeft="15dp" />
 
-        <Button
-            android:id="@+id/button2Send"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="2 SLOT -> TG" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:text="Phone2:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10px"
-            android:paddingTop="10px" />
+            <EditText
+                android:id="@+id/editText2_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="50dp"
+                android:ems="10"
+                android:inputType="text"
+                android:paddingLeft="15dp" />
 
-        <Button
-            android:id="@+id/buttonRead"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="READ"
-            android:textColorHighlight="#3F51B5"
-            android:textColorLink="#3F51B5"
-            android:theme="@style/MaterialAlertDialog.Material3" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/button2Send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2 SLOT -> TG" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:paddingTop="10dp" />
+
+            <Button
+                android:id="@+id/buttonRead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="READ"
+                android:textColorHighlight="#3F51B5"
+                android:textColorLink="#3F51B5"
+                android:theme="@style/MaterialAlertDialog.Material3" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:paddingTop="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cache Num:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editTextCacheNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="+393792530897" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>
+    ```

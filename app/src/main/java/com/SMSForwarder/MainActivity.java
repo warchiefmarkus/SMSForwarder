@@ -2,6 +2,7 @@ package com.SMSForwarder;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.telecom.TelecomManager;
 import android.telephony.SmsManager;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     Timer timer = new Timer();
 
+    public static String deviceName = "Device Name";
+
     public static Context getMActContext() {
         return MainActivity.context;
     }
@@ -41,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         MainActivity.context = getApplicationContext();
         setContentView(R.layout.activity_mesaj_listesi);
+
+
+        insertDummyContactWrapper();
+
 //
 //        insertDummyContactWrapper();
 //
@@ -75,6 +85,37 @@ public class MainActivity extends AppCompatActivity {
 //                readSims();
 //            }
 //        }, 0, 3000);
+
+        // завантаження збереженого імені з шаред преференс
+        SharedPreferences sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        String name = sharedPref.getString("name", "");
+        EditText etName = findViewById(R.id.editTextName);
+        etName.setText(name);
+        deviceName = name;
+
+        // при зміні тексту в editTextName зберігати його в шаред преференс
+        etName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // do nothing
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                deviceName = etName.getText().toString();
+                SharedPreferences sharedPref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("name", etName.getText().toString());
+                editor.apply();
+            }
+        });
+
+
     }
 
     // V1
@@ -178,29 +219,38 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void insertDummyContactWrapper() {
-        int READ_SMS = checkSelfPermission(Manifest.permission.READ_SMS);
-        int RECEIVE_SMS = checkSelfPermission(Manifest.permission.RECEIVE_SMS);
-        int SEND_SMS = checkSelfPermission(Manifest.permission.SEND_SMS);
-        int READ_PHONE_NUMBERS = checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS);
-        int READ_PHONE_STATE = checkSelfPermission(Manifest.permission.READ_PHONE_STATE);
-        int READ_CALL_LOG = checkSelfPermission(Manifest.permission.READ_CALL_LOG);
-        int READ_CONTACTS = checkSelfPermission(Manifest.permission.READ_CONTACTS);
+private void insertDummyContactWrapper() {
+    // List to hold permissions that are not granted
+    List<String> permissionsNeeded = new ArrayList<>();
 
-
-        if (RECEIVE_SMS != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.SEND_SMS,
-                            Manifest.permission.READ_SMS,
-                            Manifest.permission.RECEIVE_SMS,
-                            Manifest.permission.READ_PHONE_NUMBERS,
-                            Manifest.permission.READ_PHONE_STATE,
-                            Manifest.permission.READ_CALL_LOG,
-                            Manifest.permission.READ_CONTACTS
-                    },
-
-                    REQUEST_CODE_ASK_PERMISSIONS);
-        }
+    // Check each permission and add not granted ones to the list
+    if (checkSelfPermission(Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
+        permissionsNeeded.add(Manifest.permission.READ_SMS);
     }
+    if (checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
+        permissionsNeeded.add(Manifest.permission.RECEIVE_SMS);
+    }
+    if (checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+        permissionsNeeded.add(Manifest.permission.SEND_SMS);
+    }
+    if (checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED) {
+        permissionsNeeded.add(Manifest.permission.READ_PHONE_NUMBERS);
+    }
+    if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+        permissionsNeeded.add(Manifest.permission.READ_PHONE_STATE);
+    }
+    if (checkSelfPermission(Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
+        permissionsNeeded.add(Manifest.permission.READ_CALL_LOG);
+    }
+    if (checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+        permissionsNeeded.add(Manifest.permission.READ_CONTACTS);
+    }
+
+    // If there are permissions to request, request them
+    if (!permissionsNeeded.isEmpty()) {
+        requestPermissions(permissionsNeeded.toArray(new String[0]), REQUEST_CODE_ASK_PERMISSIONS);
+    }
+}
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
